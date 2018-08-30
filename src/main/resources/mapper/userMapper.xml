@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace对应接口文件的全限定名，要实现哪个文件功能-->
+<mapper namespace="dao.IUserDao">
+    <!--抽出的共用sql-->
+    <sql id="fields">
+        *
+    </sql>
+    <sql id="tablename">
+        user
+    </sql>
+    <!--要实现的具体功能用具体的标签来标注-->
+    <!--id指明功能名称或方法名称,parameterType入参类型-->
+    <!--User findOneById(string id)-->
+    <!--resultType返回类型-->
+    <select id="findOneById" parameterType="java.lang.Integer" resultType="dto.User">
+--         具体的sql语句的实现
+        SELECT
+        <include refid="fields"/>
+        FROM
+        <include refid="tablename"/>
+        WHERE id = #{id}
+    </select>
+</mapper>
